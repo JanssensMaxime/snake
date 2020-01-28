@@ -15,7 +15,7 @@ class Snake():
         self.height = height
         self.color = color
         self.rect = (x, y, width, height)
-        self.velocity = 0.5
+        self.velocity = 1
 
     def draw(self, win):
         pygame.draw.rect(win, self.color, self.rect)
