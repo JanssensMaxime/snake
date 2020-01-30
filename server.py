@@ -1,6 +1,8 @@
 import socket
 from _thread import *
-import sys
+from snake import Snake
+from food import Food
+import pickle
 
 
 server = "10.103.121.52"
@@ -16,38 +18,45 @@ except socket.error as e:
 s.listen(2)
 print("Waiting for connection, Server started")
 
-def read_pos(str):
-    str = str.split(",")
-    return int(str[0]), int(str[1])
+size = 500
 
-def make_pos(tup):
-    return str(tup[0]) + ", " + str(tup[1])
+snakes = [Snake(0, 0, 20, 20, (255, 0, 0)), Snake(480, 480, 20, 20, (0, 0, 255))]
+
+food = Food(0, 0, 20, 20, (138, 245, 66))
+food.create_food()
 
 
-pos = [(0,0),(100,100)]
-
-def threaded_client(conn, player):
-    conn.send(str.encode(make_pos(pos[player])))
+def threaded_client(conn, snake):
+    conn.send(pickle.dumps(snakes[snake]))
 
     reply = ""
     while True:
         try:
-            data = read_pos(conn.recv(2048).decode())
-            pos[player] = data
-            
+            data = pickle.loads(conn.recv(4096))
+
+            if isinstance(data, Snake):
+                snakes[snake] = data
 
             if not data:
                 print("Disconnected")
                 break
             else:
-                if player ==1:
-                    reply = pos[0]
+                if snake == 1:
+                    reply = snakes[0]
                 else:
-                    reply = pos[1]
+                    reply = snakes[1]
+
+            if data == "food":
+                reply = food
+            if data == "create_food":
+                food.create_food()
+            if data == "size":
+                reply = size
+
                 print("Recieved: ", data)
                 print("Sending: ", reply)
 
-            conn.sendall(str.encode(make_pos(reply)))
+            conn.sendall(pickle.dumps(reply))
 
         except:
             break
