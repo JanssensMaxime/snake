@@ -15,9 +15,11 @@ class Food():
     def get_rect(self):
         return self.rect
 
+    #drawing food
     def draw(self, win):
         pygame.draw.rect(win, self.color, self.rect)
 
+    #create random position for food
     def create_food(self):
        w = 500
        position = True

@@ -15,6 +15,8 @@ class Snake():
     def get_rect(self):
         return self.rect
 
+
+    #drawing snake and body
     def draw(self, window_game):
         body_color = (245, 66, 245)
         pygame.draw.rect(window_game, self.color, self.rect)
@@ -22,6 +24,7 @@ class Snake():
             for part in self.body:
                 pygame.draw.rect(window_game, body_color, part)
 
+    #keyboard bindings
     def set_direction(self):
         keys = pygame.key.get_pressed()
 
@@ -34,6 +37,7 @@ class Snake():
         if keys[pygame.K_s]:
            self.direction = "down"
 
+    #moving snake
     def move(self):
         self.set_direction()
         if self.direction == "right":
@@ -46,6 +50,7 @@ class Snake():
             self.y += self.velocity
         self.update()
 
+    #move snake body (reverse)
     def move_body(self):
         for index in range(len(self.body)-1, 0, -1):
             x = self.body[index-1].x
@@ -60,10 +65,24 @@ class Snake():
             self.body[0].y = y
     
 
-    
+    #updating head of snake
     def update(self):
         self.rect = (self.x, self.y,self.width, self.height)
 
+    #snake eats food => grow
     def eat(self):
         rect = pygame.Rect(0, 0, self.width, self.height)
         self.body.append(rect)
+
+    #allow to get body of snake
+    def get_snake_body(self):
+        snake_perso = []
+        head = pygame.Rect(self.rect)
+        snake_perso.append(head)
+        for body_p in self.body:
+            snake_perso.append(pygame.Rect(body_p))
+        return snake_perso
+
+    #collision head with body
+    def body_collisions(self):
+        return pygame.Rect(self.rect).collidelist(self.body)
