@@ -7,6 +7,11 @@ Tu veux jouer au snake seul ?
 
 Tu veux jouer au snake avec un ami ?
 
+A.Installer python 3.8.1
+B.Installer pygame:
+	1.Ouvrir l'invité de commandes
+	2.Exécuter "pip install pygame"
+
 1.Ouvre ton invité de commande et entre "ipconfig"
 2.Copie ton IP
 3.Ouvrez le fichier server.py et network.py et changez la variable server
@@ -20,6 +25,11 @@ Do you want to play snake on your own ?
 1. Execute snakeGame.py
 
 Do you want to play snake with your friends ?
+
+A.Install python 3.8.1
+B.Install pygame:
+	1.Open your cmd
+	2.Execute "pip install pygame"
 
 1. Open your cmd and ask for "ipconfig" (the host has to do it)
 2. Copy your IP
