@@ -1,5 +1,8 @@
 SNAKE 2 PLAYERS/JOUEURS
 
+Installer python 3.8.1
+Install python 3.8.1
+
 FR:
 Tu veux jouer au snake seul ?
 
@@ -7,8 +10,7 @@ Tu veux jouer au snake seul ?
 
 Tu veux jouer au snake avec un ami ?
 
-A.Installer python 3.8.1
-B.Installer pygame:
+A.Installer pygame:
 	1.Ouvrir l'invité de commandes
 	2.Exécuter "pip install pygame"
 
@@ -26,8 +28,7 @@ Do you want to play snake on your own ?
 
 Do you want to play snake with your friends ?
 
-A.Install python 3.8.1
-B.Install pygame:
+A.Install pygame:
 	1.Open your cmd
 	2.Execute "pip install pygame"
 
